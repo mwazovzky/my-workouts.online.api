@@ -17,6 +17,6 @@ class Template extends Model
 
     public function actions(): MorphMany
     {
-        return $this->morphMany(Action::class, 'actionable');
+        return $this->morphMany(Action::class, 'actionable')->orderBy('order');
     }
 }

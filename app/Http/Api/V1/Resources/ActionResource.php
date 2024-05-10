@@ -7,6 +7,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ActionResource extends JsonResource
 {
+    private bool $withSets = false;
+
     /**
      * Transform the resource into an array.
      *
@@ -20,7 +22,18 @@ class ActionResource extends JsonResource
             'sets_number' => $this->sets_number,
             'repetitions' => $this->repetitions,
 
-            ...ExerciseResource::make($this->exercise)->toArray($request),
+            $this->merge(ExerciseResource::make($this->exercise)),
+
+            $this->mergeWhen($this->withSets, [
+                'sets' => SetResource::collection($this->sets),
+            ]),
         ];
+    }
+
+    public function setWithSets(bool $withSets): static
+    {
+        $this->withSets = $withSets;
+
+        return $this;
     }
 }

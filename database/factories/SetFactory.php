@@ -17,7 +17,8 @@ class SetFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'number' => $this->faker->numberBetween(1, 3),
+            'repetitions' => $this->faker->numberBetween(10, 20),
         ];
     }
 }

@@ -19,6 +19,9 @@ class ActionFactory extends Factory
     {
         return [
             'exercise_id' => Exercise::factory(),
+            'order' => $this->faker->numberBetween(1, 10),
+            'sets_number' => $this->faker->numberBetween(1, 3),
+            'repetitions' => $this->faker->numberBetween(10, 20),
         ];
     }
 }

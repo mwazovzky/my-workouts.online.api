@@ -17,8 +17,7 @@ return new class extends Migration
             $table->unsignedInteger('order');
             $table->unsignedInteger('sets_number');
             $table->unsignedInteger('repetitions');
-            $table->string('actionable_type');
-            $table->unsignedBigInteger('actionable_id');
+            $table->morphs('actionable');
             $table->timestamps();
 
             $table->foreign('exercise_id')->references('id')->on('exercises')->onDelete('CASCADE');
